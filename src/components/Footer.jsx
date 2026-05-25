@@ -1,61 +1,37 @@
+import { FaLinkedin, FaGithub, FaTwitter } from "react-icons/fa";
+
 function Footer() {
   return (
-    <footer style={styles.footer}>
-      <p>© {new Date().getFullYear()} Lima Rahimzai</p>
+    <footer className="footer">
+      <p>© {new Date().getFullYear()} Lima Rahimzai. All rights reserved.</p>
 
-      <div style={styles.links}>
-        <a
-          href="https://github.com/codestrom001"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={styles.link}
-        >
-          GitHub
-        </a>
-
+      <div className="socials">
         <a
           href="https://www.linkedin.com/in/lima-rahimzai-aa8690410"
           target="_blank"
           rel="noopener noreferrer"
-          style={styles.link}
         >
-          LinkedIn
+          <FaLinkedin />
+        </a>
+
+        <a
+          href="https://github.com/codestrom001"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FaGithub />
         </a>
 
         <a
           href="https://x.com/Code_Strom"
           target="_blank"
           rel="noopener noreferrer"
-          style={styles.link}
         >
-          X (Twitter)
+          <FaTwitter />
         </a>
       </div>
     </footer>
   );
 }
-
-const styles = {
-  footer: {
-    marginTop: "40px",
-    padding: "20px",
-    background: "black",
-    color: "white",
-    textAlign: "center",
-  },
-
-  links: {
-    marginTop: "10px",
-    display: "flex",
-    justifyContent: "center",
-    gap: "20px",
-    flexWrap: "wrap",
-  },
-
-  link: {
-    color: "white",
-    textDecoration: "none",
-  },
-};
 
 export default Footer;

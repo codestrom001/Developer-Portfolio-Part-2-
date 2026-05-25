@@ -1,20 +1,32 @@
-function Header({ message, image }) {
+import profile from "../assets/profile.png";
+
+function Header({ name, role, description }) {
   return (
-    <header className="hero" id="home">
+    <section className="hero" id="home">
       <div className="hero-text">
-        <h1>Hi, I’m Lima Rahimzai 👋</h1>
+        <p className="hero-tag">Frontend Developer</p>
 
-        <p>{message}</p>
+        <h1>{name}</h1>
 
-        <p className="role">
-          Frontend Developer | React Learner
-        </p>
+        <h2>{role}</h2>
+
+        <p className="hero-desc">{description}</p>
+
+        <div className="hero-buttons">
+          <a href="#projects" className="primary-btn">
+            View Projects
+          </a>
+
+          <a href="#contact" className="secondary-btn">
+            Contact Me
+          </a>
+        </div>
       </div>
 
-      <div className="hero-img">
-        <img src={image} alt="profile" />
+      <div className="hero-image">
+        <img src={profile} alt="Profile" />
       </div>
-    </header>
+    </section>
   );
 }
 

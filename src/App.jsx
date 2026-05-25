@@ -1,67 +1,57 @@
-import { useEffect } from "react";
-
-import "./styles/style.css";
+import { useState, useEffect } from "react";
 
 import Navbar from "./components/Navbar";
 import Header from "./components/Header";
 import About from "./components/About";
+import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Certificates from "./components/Certificates";
+import Contact from "./components/Contact";
+import Feedback from "./components/Feedback";
 import Footer from "./components/Footer";
 
-import profileImage from "./assets/profile.png";
-
 function App() {
+  // 🌙 Theme state
+  const [theme, setTheme] = useState("dark");
 
+  // Load saved theme
   useEffect(() => {
-    const cursor = document.querySelector(".cursor");
-    const trail = document.querySelector(".cursor-trail");
-
-    const moveCursor = (e) => {
-      cursor.style.left = e.clientX + "px";
-      cursor.style.top = e.clientY + "px";
-
-      setTimeout(() => {
-        trail.style.left = e.clientX + "px";
-        trail.style.top = e.clientY + "px";
-      }, 80);
-    };
-
-    window.addEventListener("mousemove", moveCursor);
-
-    return () => {
-      window.removeEventListener(
-        "mousemove",
-        moveCursor
-      );
-    };
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) setTheme(savedTheme);
   }, []);
+
+  // Apply theme
+  useEffect(() => {
+    document.body.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  function toggleTheme() {
+    setTheme(theme === "dark" ? "light" : "dark");
+  }
 
   return (
     <>
-      {/* CUSTOM CURSOR */}
-      <div className="cursor"></div>
-      <div className="cursor-trail"></div>
+      <Navbar toggleTheme={toggleTheme} theme={theme} />
 
-      {/* NAVBAR */}
-      <Navbar />
-
-      {/* HERO */}
       <Header
-        message="Welcome to my developer portfolio!"
-        image={profileImage}
+        name="Hi, I'm Lima Rahimzai"
+        role="Frontend Web Developer"
+        description="I build clean, modern and responsive web applications using React."
       />
 
-      {/* ABOUT */}
       <About />
 
-      {/* PROJECTS */}
+      <Skills />
+
       <Projects />
 
-      {/* CERTIFICATES */}
       <Certificates />
 
-      {/* FOOTER */}
+      <Contact />
+
+      <Feedback />
+
       <Footer />
     </>
   );
